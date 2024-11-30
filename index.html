@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Faktorial</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #00838f;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #006064;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #b2ebf2;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #004d40;
+            font-weight: bold;
+            background: #e0f2f1;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .description {
+            margin-top: 30px;
+            font-size: 16px;
+            border-top: 2px solid #ddd;
+            padding-top: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Faktorial
+    </header>
+    <div class="container">
+        <h1>Hitung Faktorial</h1>
+        <p>Masukkan angka di bawah ini untuk menghitung faktorialnya:</p>
+        <input type="number" id="numberInput" placeholder="Masukkan angka" min="0">
+        <button onclick="calculateFactorial()">Hitung Faktorial</button>
+        <div class="result" id="result"></div>
+        <div class="description" id="description">
+            <h2>Apa Itu Faktorial?</h2>
+            <p>Faktorial dari sebuah bilangan adalah hasil kali bilangan tersebut dengan semua bilangan bulat positif di bawahnya hingga 1. Faktorial dilambangkan dengan tanda seru (<strong>!</strong>). Contoh:</p>
+            <p><strong>5!</strong> berarti <strong>5 × 4 × 3 × 2 × 1 = 120</strong>.</p>
+            <p>Faktorial banyak digunakan dalam matematika, khususnya dalam kombinatorik, probabilitas, dan statistik.</p>
+        </div>
+    </div>
+    <footer>
+        Dibuat oleh: Daru Rahmat Anggoro
+    </footer>
+    <script>
+        function calculateFactorial() {
+            const number = parseInt(document.getElementById('numberInput').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(number) || number < 0) {
+                resultDiv.textContent = "Harap masukkan angka yang valid (>= 0).";
+                return;
+            }
+
+            let factorial = 1;
+            let steps = ''; // Untuk menyimpan cara penyelesaian
+
+            for (let i = number; i >= 1; i--) {
+                factorial *= i;
+                steps += i; // Menambahkan angka ke langkah
+                if (i > 1) {
+                    steps += ' × '; // Tambahkan tanda kali jika bukan angka terakhir
+                }
+            }
+
+            // Menambahkan format angka dengan titik
+            const formattedFactorial = factorial.toLocaleString('id-ID');
+
+            // Menampilkan hasil akhir dan cara penyelesaian
+            resultDiv.innerHTML = `<p>${number}! = ${steps} = <strong>${formattedFactorial}</strong></p>`;
+        }
+    </script>
+</body>
+</html>
